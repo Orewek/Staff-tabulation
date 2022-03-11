@@ -47,22 +47,22 @@ def unmerge_cells_fun(jump, start_col, last_col):
 # все 4 снизу делают почти тоже самое, что и start_col_fun(start_col). Имеет более локальный вид
 
 
-def cell_function_days_U(cell_num_days):  # добавление отработанных дней в колонку U
+def cell_function_days_U(cell_num_days: int) -> str:  # добавление отработанных дней в колонку U
     days_cell = str("U") + str(cell_num_days)  # создаем номер ячейки, куда будем заполнять данные
     return days_cell
 
 
-def cell_function_hours_U(cell_num_hours):  # добавление отработанных часов в колонку U
+def cell_function_hours_U(cell_num_hours: int) -> str:  # добавление отработанных часов в колонку U
     hours_cell = str("U") + str(cell_num_hours)
     return hours_cell
 
 
-def cell_function_days_V(cell_num_days):  # добавление отработанных дней в колонку V
+def cell_function_days_V(cell_num_days: int) -> str:  # добавление отработанных дней в колонку V
     days_cell_2 = str("V") + str(cell_num_days)  # создаем номер ячейки, куда будем заполнять данные
     return days_cell_2
 
 
-def cell_function_hours_V(cell_num_hours):  # добавление отработанных часов в колонку V
+def cell_function_hours_V(cell_num_hours: int) -> str:  # добавление отработанных часов в колонку V
     hours_cell_2 = str("V") + str(cell_num_hours)
     return hours_cell_2
 
@@ -76,7 +76,7 @@ k - некоторые вещи нам нужно соединить один р
 """
 
 
-def merge_cells_fun(start_col, last_col, fpos_row, lpos_row, k):
+def merge_cells_fun(start_col: int, last_col: int, fpos_row: int, lpos_row: int, k: int):
     row = r + k
     for col in [(start_col, last_col)]:
         sheet.merge_cells(start_row=row + fpos_row, start_column=col[0], end_row=row + lpos_row, end_column=col[1])
@@ -87,7 +87,7 @@ def merge_cells_fun(start_col, last_col, fpos_row, lpos_row, k):
 """
 
 
-def add_into_merged_cell(start_col, number_of_the_row, text):
+def add_into_merged_cell(start_col: int, number_of_the_row: int, text):
     top_left_cell = sheet[f'{start_col_fun(start_col)}{number_of_the_row}']  # обозначаем клетку, куда хотим добавить название
     top_left_cell.value = text   # добавляем название
     top_left_cell.alignment = Alignment(horizontal="center", vertical="center")  # выравниваем по цетру
@@ -101,7 +101,7 @@ def add_into_merged_cell(start_col, number_of_the_row, text):
 """
 
 
-def start_col_fun(start_col):
+def start_col_fun(start_col: int) -> str:
     if(start_col == 0):
         raise ValueError('столбец равен нулю! Такого быть не может, ведь нумерация с единицы/первого. Это означает, что ошибка в системе, где-то start_col обнуляется')
     if(start_col > 26):
@@ -117,7 +117,7 @@ def start_col_fun(start_col):
 """
 
 
-def standart_5_8_day_fraction(day_in_the_month, column_for_work_days, day_fraction_for_lazy_ass, k):
+def standart_5_8_day_fraction(day_in_the_month: int, column_for_work_days: int, day_fraction_for_lazy_ass: int, k: int):
     if calendar.check(datee(2021, 11, day_in_the_month)) == DayType.WORKING:
         sheet.cell(r + k, column_for_work_days).value = "Я"
         sheet.cell(r + k + 1, column_for_work_days).value = 8 * day_fraction_for_lazy_ass
@@ -131,7 +131,7 @@ def standart_5_8_day_fraction(day_in_the_month, column_for_work_days, day_fracti
 # ищем два выходных подряд, чтобы туда поставить ночную смену, если она была 15 или 31 числа
 
 
-def LF_free_space_for_night_shift(column_for_work_days, day_fraction_for_lazy_ass, k):
+def LF_free_space_for_night_shift(column_for_work_days: int, day_fraction_for_lazy_ass: int, k: int):
     for i in range(5, 20):
         if(sheet.cell(r + k, column_for_work_days).value == "В" and sheet.cell(r + k, column_for_work_days + 1).value == "В"):
             lazy_2 = str("{:.0f}".format(2 * day_fraction_for_lazy_ass))
@@ -150,14 +150,14 @@ def LF_free_space_for_night_shift(column_for_work_days, day_fraction_for_lazy_as
 '''
 
 
-def last_col_fun(last_col):
+def last_col_fun(last_col: int) -> str:
     if(start_col == 0):
         raise ValueError('столбец равен нулю! Такого быть не может, ведь нумерация с единицы/первого. Это означает, что ошибка в системе, где-то last_col обнуляется')
     last_col_fun_2 = str(chr(64 + last_col))
     return last_col_fun_2
 
 
-def merge_cells_fun_inside(start_col, last_col, fpos_row, lpos_row, k, text):
+def merge_cells_fun_inside(start_col: int, last_col: int, fpos_row: int, lpos_row: int, k: int, text):
     row = r + k
     for col in [(start_col, last_col)]:
         sheet.merge_cells(start_row=row + fpos_row, start_column=col[0], end_row=row + lpos_row, end_column=col[1])
