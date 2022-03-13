@@ -351,30 +351,16 @@ for DEPARTMENT in DEPARTMENTS:
             # сумма двух половин месяца
             sheet[cell_function_hours_V(cell_num_hours + 1)] = str("{:.0f}".format(whole_hours)) + "/" + str("{:.0f}".format(night_hours))
 
-        count_of_work_hours = 0
-        count_of_work_days = 0
-        night_days_first_half = 0
-        night_days_second_half = 0
-        day_hours_first_half = 0
-        day_hours_second_half = 0
-        day_days_first_half = 0
-        day_days_second_half = 0
-        night_hours_first_half = 0
-        night_hours_second_half = 0
-        count_of_work_hours = 0
-        count_of_work_days = 0
+        
+        tupz = [count_of_work_hours, count_of_work_days, night_days_first_half], night_days_second_half,
+                day_hours_first_half, day_hours_second_half, day_days_first_half, day_days_second_half,
+                night_hours_first_half, night_hours_second_half, count_of_work_hours, count_of_work_days,
+                # переход на следующею ячейку, то есть на следуещего сотрудника по списку
+                night_days_first_half, night_days_second_half, day_hours_first_half, day_hours_second_half,
+                day_days_first_half, day_days_second_half, night_hours_first_half, night_hours_second_half]
 
-        # переход на следующею ячейку, то есть на следуещего сотрудника по списку
-
-        night_days_first_half = 0
-        night_days_second_half = 0
-        day_hours_first_half = 0
-        day_hours_second_half = 0
-        day_days_first_half = 0
-        day_days_second_half = 0
-        night_hours_first_half = 0
-        night_hours_second_half = 0
-
+        for tup in tupz: tup == 0
+        
         r += 4  # добавляем через 4 клетки нового сотрудника
     row = r  # возвращеем row в изначальное состояние, чтобы сделать тотже цикл с другими объектами
     """
