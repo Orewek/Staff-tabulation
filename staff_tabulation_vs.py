@@ -186,14 +186,6 @@ for DEPARTMENT in DEPARTMENTS:
 
                     if(days_count == 16):
                         column_for_work_days = 5  # начинаем с 5-ого столбца, идем до 22
-                    """
-                    print(day_in_the_month)
-                    print(column_for_work_days)
-                    print(days_count)
-                    print(shitf_day)
-                    print(first_shift_day_col)
-                    print("-------------------------------")
-                    """
 
                     # если стоит : отпуск, выходной, ничего не стоит (None), то ставим 0 часов и выходной
                     # (можно и разбить чтобы отпуска в финальном табеле ставились)
